@@ -1,0 +1,137 @@
+body {
+    background: conic-gradient(from 45deg,  #e7d3d4, #d1b1b0, #fbe2e4);
+    }
+
+.navbar {
+    background-color: #e65c90;
+}
+
+.color-word{
+    color: white;
+}
+
+.music-section {
+    padding: 20px;
+}
+
+.top-10 {
+    background-color: #e65c90;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #dcd8d8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.song-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.song-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.play-icon {
+    font-size: 1.5rem;
+    color: #ff66b2;
+    cursor: pointer;
+}
+
+.genre-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border-color 0.3s, transform 0.2s;
+    text-align: center;
+    background-color: #e65c90;
+}
+
+.genre-button img {
+    width: 100%;
+    height: 150%;
+    border-radius: 5px;
+}
+
+.genre-button:hover {
+    transform: scale(1.05);
+}
+
+.genre-button.selected {
+    border-color: #ff66b2;
+}
+
+.genre-button h6 {
+    margin-top: 15px;
+    color: white;
+}
+
+.logout-form {
+    margin-top: 5px;
+}
+
+.logout-button {
+    background-color: #003f5a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+}
+
+.play-button-icon {
+    background-color: black; 
+    color: white;
+    border: none;
+    justify-content: end;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.play-button-icon i {
+    font-size: 10px;
+}
+
+.play-button-icon:hover {
+    background-color: #8c8c8c; 
+    transform: scale(1.05);
+}
+
+.play-button-icon:active {
+    background-color: #e7d3d4;
+}
