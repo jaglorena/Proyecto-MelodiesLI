@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class UsuarioController extends Controller
 {
     public function showWelcome()
     {

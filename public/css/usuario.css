@@ -1,13 +1,13 @@
 body {
-    background: conic-gradient(from 45deg,  #e7d3d4, #d1b1b0, #fbe2e4);
-    }
-
-.navbar {
-    background-color: #e65c90;
+    background: linear-gradient(180deg, #1c1c3c, #453a68);
 }
 
-.color-word{
-    color: white;
+.navbar {
+    background-color: #282b4d;
+}
+
+.color-word {
+    color: #ffffff;
 }
 
 .music-section {
@@ -15,8 +15,8 @@ body {
 }
 
 .top-10 {
-    background-color: #e65c90;
-    color: white;
+    background-color: #3a3d63; 
+    color: #e4e6eb;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -25,27 +25,30 @@ body {
 }
 
 .player-controls {
+    color: #e4e6eb;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #dcd8d8;
+    background-color: #44476b; 
     padding: 15px;
     border-radius: 5px;
     margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
 }
 
 .song-list {
+    color: #e4e6eb;
     max-height: 300px;
     overflow-y: auto;
     margin-bottom: 20px;
 }
 
 .song-list-item {
+    color: #e4e6eb;
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: white;
+    background-color: #6c6f90;
     border-radius: 5px;
     margin-bottom: 10px;
     align-items: center;
@@ -53,7 +56,7 @@ body {
 
 .play-icon {
     font-size: 1.5rem;
-    color: #ff66b2;
+    color: #76b6f3; 
     cursor: pointer;
 }
 
@@ -66,12 +69,13 @@ body {
     border-radius: 5px;
     transition: border-color 0.3s, transform 0.2s;
     text-align: center;
-    background-color: #e65c90;
+    background-color: #393b51; 
+    box-shadow: 8px 5px 8px rgba(252, 250, 250, 0.2);
 }
 
 .genre-button img {
     width: 100%;
-    height: 150%;
+    height: auto; 
     border-radius: 5px;
 }
 
@@ -80,12 +84,12 @@ body {
 }
 
 .genre-button.selected {
-    border-color: #ff66b2;
+    border-color: #76b6f3;
 }
 
 .genre-button h6 {
     margin-top: 15px;
-    color: white;
+    color: #e4e6eb;
 }
 
 .logout-form {
@@ -93,8 +97,8 @@ body {
 }
 
 .logout-button {
-    background-color: #003f5a;
-    color: #fff;
+    background-color: #282b4d;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     padding: 8px 18px;
@@ -104,12 +108,12 @@ body {
 }
 
 .logout-button:hover {
-    background-color: #c0392b;
+    background-color: #4a4d76; 
 }
 
 .play-button-icon {
-    background-color: black; 
-    color: white;
+    background-color: #76b6f3; 
+    color: #ffffff;
     border: none;
     justify-content: end;
     padding: 5px 15px;
@@ -128,10 +132,10 @@ body {
 }
 
 .play-button-icon:hover {
-    background-color: #8c8c8c; 
+    background-color: #5694d1; 
     transform: scale(1.05);
 }
 
 .play-button-icon:active {
-    background-color: #e7d3d4;
+    background-color: #476ba5;
 }
