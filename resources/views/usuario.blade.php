@@ -11,8 +11,6 @@
 </head>
 
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <!--<a class="nav-link" href="#"><img src="https://i.ibb.co/pZsqW4J/Logo-Melodies-Li.png" alt="User" style="width: 30px; border-radius: 50%;"></a>-->
@@ -102,7 +100,7 @@
         <!-- lista de artistas y canciones -->
         <div class="row mt-4">
             <div class="col-md-6">
-                <h5>Lista de artistas</h5>
+                <h5 class="color-word">Lista de artistas</h5>
                 <div class="song-list artist-list">
                     <div class="song-list-item">
                         <span>Nombre canción <p>Artista</p></span>
@@ -122,7 +120,7 @@
             </div>
 
             <div class="col-md-6">
-                <h5>Lista de canciones</h5>
+                <h5 class="color-word">Lista de canciones</h5>
                 <div class="song-list song-list-scroll">
                     <div class="song-list-item">
                         <span>Nombre canción <p>Artista</p></span>
