@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Artista extends Model
 {
     use HasFactory;
+    protected $table = "artista";
+    public $timestamps = false;
     protected $fillable = [
-        "nombbre",
+        "nombre",
         "biografia",
-    
-    ] ;
+        "genero_id",
+    ];
 }

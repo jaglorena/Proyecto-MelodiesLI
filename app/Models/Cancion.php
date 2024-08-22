@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Cancion extends Model
 {
     use HasFactory;
+
+    protected $table = "cancion";
+    public $timestamps = false;
+
     protected $fillable = [
         "titulo",
         "duracion",
-    ];
-   
-    protected $casts = [
-        "duracion"=> "time",
+        "album_id",
+        "artista_id",
     ];
 
 }

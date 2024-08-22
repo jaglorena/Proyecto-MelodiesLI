@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Genero extends Model
 {
     use HasFactory;
+
+    protected $table = "genero";
+    public $timestamps = false;
     protected $fillable = [
         "nombre",
-    ] ;
+    ];
 }

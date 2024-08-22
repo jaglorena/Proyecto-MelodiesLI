@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Artista;
+use App\Models\Genero;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
-class ArtistaController extends Controller
+class GeneroController
 {
-    public function showArtista()
-    {
-        return view('artista');
-    }
-
     public function index()
     {
-        return view('crearartista');
+        return view('genero');
     }
 
     public function create()
@@ -27,13 +21,10 @@ class ArtistaController extends Controller
     {
         $validatedData = $request->validate([
             "nombre" => "required",
-            "biografia" => "required",
-            "genero_id" => "required",
         ]);
 
-        $resultado = Artista::create($validatedData);
-        return redirect('/artista/' . $resultado->id);
-
+        $resultado = Genero::create($validatedData);
+        return redirect('/genero/' . $resultado->id);
     }
 
     public function edit($id)
@@ -53,6 +44,6 @@ class ArtistaController extends Controller
 
     public function show($id)
     {
-        return view('crearartista', ['artista' => Artista::find($id)]);
+        return view('genero', ['genero' => Genero::find($id)]);
     }
 }
