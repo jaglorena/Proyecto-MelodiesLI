@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(180deg, #1c1c3c, #342a54);
     margin: 0;
-    padding-top: 70px; /* Añade espacio para el navbar */
+    padding-top: 70px; 
 }
 
 .color-word {
@@ -27,7 +27,8 @@ body {
     background-color: #2d3050;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 20px; /* Separar del navbar */
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .titulo-admin {
@@ -64,11 +65,32 @@ body {
 .boton-admin:hover {
     background-color: #5694d1;
 }
-
+.tabla-admin-artista,
 .tabla-admin {
+    max-height: 300px;
+    overflow-y: auto; 
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #44476b;
+    padding: 10px;
+    background-color: #2d3050;
+    display: block; 
+}
+
+
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 0; 
+}
+
+
+thead {
+    background-color: #44476b;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10; 
 }
 
 .tabla-admin thead {
@@ -82,6 +104,15 @@ body {
     text-align: left;
     color: #e4e6eb;
     border-bottom: 1px solid #44476b;
+    min-width: 300px; 
+}
+
+.tabla-admin-artista th, .tabla-admin-artista td {
+    padding: 15px;
+    text-align: left;
+    color: #e4e6eb;
+    border-bottom: 1px solid #44476b;
+    min-width: 400px; 
 }
 
 .tabla-admin tr:nth-child(even) {
@@ -109,4 +140,22 @@ body {
 
 .acciones-admin button:hover {
     background-color: #5694d1;
+}
+.logout-form {
+    margin-top: 5px;
+}
+
+.logout-button {
+    background-color: #4a4d76; 
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #282b4d;
 }

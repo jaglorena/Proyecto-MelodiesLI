@@ -135,6 +135,16 @@
                         <div>
                             <button class="play-button-icon"><i class="fas fa-play"></i></button>
                         </div>
+                        <span>Nombre canción <p>Artista</p></span>
+                        <span><i class="bi bi-play-circle play-icon"></i></span>
+                        <div>
+                            <button class="play-button-icon"><i class="fas fa-play"></i></button>
+                        </div>
+                        <span>Nombre canción <p>Artista</p></span>
+                        <span><i class="bi bi-play-circle play-icon"></i></span>
+                        <div>
+                            <button class="play-button-icon"><i class="fas fa-play"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>

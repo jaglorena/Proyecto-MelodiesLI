@@ -36,12 +36,12 @@
     </nav>
 
     <div class="contenedor-admin">
-        <h1 class="titulo-admin">Panel del Administrador</h1>
+        <h1 class="titulo-admin">Opciones de Administrador</h1>
 
         <div class="seccion-admin">
             <h2 class="subtitulo-admin">Administrar Artistas</h2>
-            <button class="boton-admin">Agregar Artista</button>
-            <table class="tabla-admin">
+            <button class="boton-admin">+ Agregar Artista</button>
+            <table class="tabla-admin-artista">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -49,16 +49,44 @@
                     </tr>
                 </thead>
                 <tbody>
-
-
+                <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        
+                    </tr>
+                    
                 </tbody>
             </table>
         </div>
 
         <div class="seccion-admin">
             <h2 class="subtitulo-admin">Administrar Álbumes y Canciones</h2>
-            <button class="boton-admin">Agregar Álbum</button>
-            <button class="boton-admin">Agregar Canción</button>
+            <button class="boton-admin">+ Agregar Álbum</button>
+            <button class="boton-admin">+ Agregar Canción</button>
             <table class="tabla-admin">
                 <thead>
                     <tr>
@@ -68,7 +96,52 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                        <td>Descargar Reporte</td>
+                    </tr> 
+
                 </tbody>
             </table>
         </div>
