@@ -1,37 +1,30 @@
-<!-- resources/views/partials/navbar.blade.php -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">
-        <img src="{{ asset('path/to/logo.png') }}" alt="Logo">
-        {{ config('app.name', 'Laravel') }}
-    </a>
+<!DOCTYPE html>
+<html lang="es">
 
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-            @auth
-                <li class="nav-item">
-                    <span class="nav-link">Tipo de usuario: {{ Auth::user()->role }}</span>
-                </li>
-                <li class="nav-item">
-                    <span class="nav-link">Hola, {{ Auth::user()->name }}</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Cerrar Sesión
-                    </a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+</head>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-            @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/registro">Registrarse</a>
-                </li>
-            @endauth
-        </ul>
-    </div>
-</nav>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <div class="navbar-content">
+                <a class="navbar-brand" href="#">
+                    <img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" class="logo-img">
+                    <span class="brand-name">Melodies Li</span>
+                </a>
+            </div>
+            <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                @csrf
+                <button type="submit" class="logout-button">Cerrar sesión</button>
+            </form>
+        </div>
+    </nav>
+</body>
+
+</html>

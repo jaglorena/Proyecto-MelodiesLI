@@ -13,8 +13,8 @@
 <body>
     @include('navbar.navbar')
     <div class="container">
-        <h1>Opciones de Artista</h1>
-        <h2>Regalías Generadas</h2>
+        <h1 class="color-word">Opciones de Artista</h1>
+        <h2 class="color-word">Regalías Generadas</h2>
         <div class="section">
             <table class="table-container">
                 <thead>

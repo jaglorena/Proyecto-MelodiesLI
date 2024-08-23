@@ -1,0 +1,80 @@
+body {
+    background: linear-gradient(180deg, #e1a8a8, #b36e8e);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.table {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.table thead {
+    background: #d57f8f;
+}
+
+.table thead th {
+    color: black;
+    padding: 12px;
+}
+
+.table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.table tbody th,
+.table tbody td {
+    color: black;
+    padding: 12px;
+}
+
+.table tbody th {
+    font-weight: normal;
+}
+
+.logout-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout-button {
+    background-color: #d57f8f;
+    border: none;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.logout-button:hover {
+    background-color: #b36e8e;
+}

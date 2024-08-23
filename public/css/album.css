@@ -1,0 +1,20 @@
+body {
+    background: linear-gradient(180deg, #1c1c3c, #453a68);
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    color: antiquewhite;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(80vh - 20px); 
+    margin-top: 60px;
+}
+
+.form-text
+{
+    color: antiquewhite;
+}

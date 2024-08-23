@@ -11,8 +11,7 @@
 </head>
 
 <body>
-@include('navbar.navbar')
-
+    @include('navbar.navbar')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container music-section mt-4">
         <div class="row">

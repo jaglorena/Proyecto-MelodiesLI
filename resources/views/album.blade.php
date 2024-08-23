@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/album.css') }}">
 </head>
 <body>
-    @include('navbar.navbar')
+    @include('navbar.navbar') <!-- Asegúrate de que esta línea esté incluida -->
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Album</h1>
+                <h1>Álbum</h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="col">
                 @if (isset($album))
-                    <form>
+                    <form class="form-album">
                         @csrf
                         <div class="mb-3">
                             <label for="titulo" class="form-label">T&iacute;tulo:</label>

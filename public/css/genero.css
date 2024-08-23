@@ -1,0 +1,67 @@
+body {
+    background: linear-gradient(180deg, #1c1c3c, #453a68);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background: linear-gradient(180deg, #a495d5);
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: wheat;
+}
+
+.container {
+    background: #fff; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+h1 {
+    color: #a495d5; 
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-label {
+    color: #453a68; 
+}
+
+.form-text {
+    color: #7d0f6c; /* Color del texto de ayuda */
+}
+
+.btn-primary {
+    background-color: #a495d5; /* Color del botón primario */
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #9e138c; 
+}
+
+.navbar .navbar-nav {
+    flex-direction: row;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #a495d5;
+}

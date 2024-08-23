@@ -1,0 +1,34 @@
+body {
+    background: linear-gradient(180deg, #1c1c3c, #453a68);
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background: #2c2c2c;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #a495d5;
+}
+
+.form-label {
+    color: #0f0f0f;
+}
+
+.form-text {
+    color: #a495d5;
+}
+
+.btn-primary {
+    background-color: #a495d5;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #9e138c;
+}
