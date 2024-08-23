@@ -8,12 +8,25 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegaliasController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RegistroController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/usuario', [UsuarioController::class, 'index']);
+
+
+// Página de inicio de sesión
+Route::get('/', [LoginController::class, 'showLogin'])->name('login');
+
+// Página de 
+Route::get('/registro', [UsuarioController::class, 'registro'])->name('registro');
+Route::get('/registro', [RegistroController::class, 'showRegistro']);
+Route::post('/registro', [RegistroController::class, 'registro'])->name('registrarUsuario');
+
+// Enviar formulario de inicio de sesión
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/usuario', [UsuarioController::class, 'showUsuario']);
 Route::get('/admin', [AdminController::class, 'showAdmin']);
 Route::get('/artista', [ArtistaController::class, 'showArtista']);
 Route::get('/artista/{id}', [ArtistaController::class, 'show']);

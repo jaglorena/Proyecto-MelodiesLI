@@ -11,7 +11,7 @@ use Illuminate\Routing\Controller;
 
 class UsuarioController extends Controller
 {
-    public function index()
+    public function showUsuario()
     {
         return view("usuario", [
             'artistas' => Artista::all(),

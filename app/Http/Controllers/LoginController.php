@@ -2,54 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
 
 class LoginController extends Controller
 {
+    public function showLogin()
+    {
+        return view('login');
+    }
+
     public function login(Request $request)
     {
-        // Validar los datos de entrada
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        // Intentar iniciar sesión con las credenciales proporcionadas
-        if (Auth::attempt($credentials)) {
-            // Autenticación exitosa, redireccionar según el rol del usuario
+        $email = $credentials["email"];
+        $password = $credentials["password"];
+        $usuario = Usuario::where('email', $email)->first();
+        if ($password == $usuario->password) {
             $request->session()->regenerate();
 
-            $user = Auth::user();
-
-            // Redirigir según el rol del usuario
-            switch ($user->role) {
+            switch ($usuario->tipo_usuario) {
                 case 'administrador':
                     return redirect()->intended('/admin');
                 case 'artista':
                     return redirect()->intended('/artista');
                 case 'cliente':
-                default:
                     return redirect()->intended('/usuario');
+                default:
+                    return redirect()->intended('/');
             }
         }
 
-        // Si la autenticación falla, regresar con un mensaje de error
         return back()->withErrors([
-            'email' => 'Las credenciales no coinciden con nuestros registros.',
+            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
         ])->onlyInput('email');
-    }
-
-    public function showLoginForm()
-    {
-        return view('login');
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
