@@ -72,4 +72,34 @@ class UsuarioController extends Controller
             ->take(5)
             ->get(["cancion.titulo"]);
     }
+
+    public function index() {
+        return view("usuario");
+    }
+
+    public function create() {
+        return view("");
+
+    }
+
+    public function store(Request $request)
+    {
+    
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+        
+    }
+        
 }
