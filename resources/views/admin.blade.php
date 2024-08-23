@@ -17,45 +17,27 @@
 
         <div class="seccion-admin">
             <h2 class="subtitulo-admin">Administrar Artistas</h2>
-            <button class="boton-admin">+ Agregar Artista</button>
+            <button class="boton-admin mb-2" onclick="window.location.href='{{ url('/adminartista') }}'">+ Agregar Artista</button>
             <table class="tabla-admin-artista">
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Acciones</th>
+                        <th>Biograf&iacute;a</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        
-                    </tr>
-                    
+                    @if (@isset($artistas))
+                            @foreach($artistas as $registro)
+                                <tr>
+                                    <td>{{ $registro->nombre }}</td>
+                                    <td>{{ $registro->biografia }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <div class="song-list-item">
+                                <span>Sin artistas</span>
+                            </div>
+                        @endif
                 </tbody>
             </table>
         </div>
@@ -63,70 +45,32 @@
         <div class="seccion-admin">
             <h2 class="subtitulo-admin">Administrar Álbumes y Canciones</h2>
             <button class="boton-admin">+ Agregar Álbum</button>
-            <button class="boton-admin">+ Agregar Canción</button>
+            <button class="boton-admin mb-2">+ Agregar Canción</button>
             <table class="tabla-admin">
                 <thead>
                     <tr>
-                        <th>Título</th>
+                        <th>T&iacute;tulo</th>
                         <th>Artista</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr> 
-
-                </tbody>
+                 @if (@isset($canciones))
+                            @foreach($canciones as $registro)
+                                <tr>
+                                    <td>{{ $registro->titulo }}</td>
+                                    <td>{{ $registro->nombre }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <div class="song-list-item">
+                                <span>Sin artistas</span>
+                            </div>
+                        @endif
             </table>
         </div>
 
         <div class="seccion-admin">
-            <h2 class="subtitulo-admin">Generar Reportes</h2>
-
-
+            <h2 class="subtitulo-admin">Reporte de regalias</h2>
+            <button class="boton-admin" onclick="window.location.href='{{ url('/regalias') }}'">Ver regalias</button>
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
