@@ -16,22 +16,11 @@
         <h1>Opciones de Artista</h1>
         <h2>Regalías Generadas</h2>
         <div class="section">
-            <table class="table-container">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Descripción</th>
-                        <th>Descargar Reporte</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Descripción</td>
-                        <td>Descargar Reporte</td>
-                    </tr>                    
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center" style="color: white;">Funcionalidad bajo desarrollo</h3>
+                </div>
+            </div>
         </div>
     </div>
 
