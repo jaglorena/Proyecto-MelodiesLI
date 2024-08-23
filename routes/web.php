@@ -6,6 +6,7 @@ use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\CancionController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegaliasController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,5 @@ Route::get('/genero/{id}', [GeneroController::class, 'show']);
 Route::post('/genero', [GeneroController::class, 'store'])->name('guardarGenero');
 Route::get('/usuario/genero/{id}', [UsuarioController::class, 'mostrarPorGenero']);
 Route::post('/cancion/reproducir', [CancionController::class, 'aumentarReproduccion']);
+Route::get('/regalias', [RegaliasController::class, 'index']);
+Route::get('/artista/{id}/regalias', [RegaliasController::class, 'regaliasXArtista']);
