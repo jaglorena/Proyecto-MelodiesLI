@@ -44,8 +44,9 @@
 
         <div class="seccion-admin">
             <h2 class="subtitulo-admin">Administrar Álbumes y Canciones</h2>
-            <button class="boton-admin">+ Agregar Álbum</button>
-            <button class="boton-admin mb-2">+ Agregar Canción</button>
+            <button class="boton-admin" onclick="window.location.href='{{ url('/album') }}'">Agregar Álbum</button>
+            <button class="boton-admin" onclick="window.location.href='{{ url('/cancion') }}'">Agregar Canción</button>
+            <button class="boton-admin mb-2" onclick="window.location.href='{{ url('/genero') }}'">Agregar G&eacute;nero</button>
             <table class="tabla-admin">
                 <thead>
                     <tr>
