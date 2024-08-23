@@ -20,6 +20,7 @@ return new class extends Migration
             $table->id()->primary(true);
             $table->string('nombre');
             $table->string('biografia');
+            $table->unsignedBigInteger('genero_id');
         });
 
         Schema::create('album', function (Blueprint $table) {
@@ -52,7 +53,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cancion_id');
         });
 
-        Schema::create('ususario', function (Blueprint $table) {
+        Schema::create('usuario', function (Blueprint $table) {
             $table->id()->primary(true);
             $table->string('nombre');
             $table->string('tipo_usuario');
@@ -60,7 +61,6 @@ return new class extends Migration
             $table->string('email');
         });
     }
-    
 
     /**
      * Reverse the migrations.
