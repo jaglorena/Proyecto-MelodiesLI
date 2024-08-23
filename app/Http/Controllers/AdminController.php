@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Models\Artista;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class AdminController extends Controller
-{    public function showAdmin()
+{
+    public function showAdmin()
     {
-        return view('admin');
+        $artistas = Artista::all();
+        $canciones = DB::table("cancion")
+            ->join("artista", "artista.id", "=", "cancion.artista_id")
+            ->get();
+        return view('admin', ["artistas" => $artistas, "canciones" => $canciones]);
     }
 
     public function editAdmin(Request $request)
     {
-        
+
     }
 
     public function index()

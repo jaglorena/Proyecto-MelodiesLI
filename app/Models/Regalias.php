@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Regalias extends Model
 {
     use HasFactory;
+    protected $table = "regalias";
+    public $timestamps = false;
     protected $fillable = [
         "monto",
         "fecha",
-    ] ;  
-    protected $casts = [
-        "monto"=> "decimal",
-        "fecha"=> "date",
     ];
-    
+    protected $casts = [
+        "monto" => "float",
+        "fecha" => "date",
+    ];
+
 }
