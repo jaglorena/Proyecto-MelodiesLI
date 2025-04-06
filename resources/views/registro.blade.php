@@ -1,46 +1,45 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/registro.css') }}"> 
-</head>
-<body>
-    <div class="container">
-        <h2>Registro de Usuario</h2>
+@extends('layouts.app')
 
-        <form method="POST" action="{{ route('registrarUsuario') }}">
-            @csrf
-            <div class="form-group">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="nombre" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="role">Tipo de Usuario:</label>
-                <select id="role" name="tipo_usuario" class="form-control" required>
-                    <option value="cliente">Cliente</option>
-                    <option value="administrador">Administrador</option>
-                    <option value="artista">Artista</option>
-                </select>
-            </div>
+@section('title', 'Registro de Usuario')
 
+@section('content')
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Registro de Usuario</h2>
+
+    <form method="POST" action="{{ route('registrarUsuario') }}">
+        @csrf
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre:</label>
+            <input type="text" id="name" name="nombre" class="form-control" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="role" class="form-label">Tipo de Usuario:</label>
+            <select id="role" name="tipo_usuario" class="form-control" required>
+                <option value="cliente">Cliente</option>
+                <option value="administrador">Administrador</option>
+                <option value="artista">Artista</option>
+            </select>
+        </div>
+
+        <div class="text-center">
             <button type="submit" class="btn btn-primary">Registrarse</button>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
+@endsection
 
-    <script src="{{ asset('js/app.js') }}"></script> 
-</body>
-</html>
+@section('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
+@endsection

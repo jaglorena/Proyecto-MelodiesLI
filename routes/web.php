@@ -23,6 +23,8 @@ Route::post('/registro', [RegistroController::class, 'registro'])->name('registr
 
 // Enviar formulario de inicio de sesión
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
+
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
