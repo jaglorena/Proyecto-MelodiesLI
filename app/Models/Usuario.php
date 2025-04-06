@@ -1,25 +1,22 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table="usuario";
-    public $timestamps=false;
+    protected $table    = "usuario";
+    public $timestamps  = false;
     protected $fillable = [
         'nombre',
         'email',
         'password',
         'tipo_usuario',
-        'fecha_registro', 
+        'fecha_registro',
     ];
 
     protected $hidden = [
@@ -30,5 +27,10 @@ class Usuario extends Authenticatable
     protected $casts = [
         'fecha_registro' => 'datetime',
     ];
+
+    public function getRoleAttribute()
+    {
+        return $this->tipo_usuario;
+    }
 
 }
