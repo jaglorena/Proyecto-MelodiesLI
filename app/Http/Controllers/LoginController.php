@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -17,15 +16,16 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email'    => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        $email = $credentials["email"];
+        $email    = $credentials["email"];
         $password = $credentials["password"];
-        $usuario = Usuario::where('email', $email)->first();
-        if ($password == $usuario->password) {
+        $usuario  = Usuario::where('email', $email)->first();
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $usuario = Auth::user();
 
             switch ($usuario->tipo_usuario) {
                 case 'administrador':
