@@ -20,7 +20,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCliente">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="#">Explorar Canciones</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('explorar') }}">Explorar Canciones</a></li>
                             <li class="nav-item">
                                 <span class="nav-link">Hola, {{ Auth::user()->nombre }}</span>
                             </li>

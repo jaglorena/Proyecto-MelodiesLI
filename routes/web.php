@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\CancionController;
+use App\Http\Controllers\ExplorarController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegaliasController;
@@ -50,4 +51,11 @@ Route::middleware(['auth', PermisosAdmin::class])->group(function () {
     Route::post('/genero', [GeneroController::class, 'store'])->name('guardarGenero');
     Route::get('/artista/{id}', [ArtistaController::class, 'show']);
     Route::get('/regalias', [RegaliasController::class, 'index']);
+});
+
+// Rutas de exploración
+Route::middleware(['auth'])->group(function () {
+    Route::get('/explorar', [ExplorarController::class, 'index'])->name('explorar');
+    Route::get('/explorar/genero/{id}', [ExplorarController::class, 'cancionesPorGenero']);
+    Route::get('/explorar/artista/{id}', [ExplorarController::class, 'cancionesPorArtista']);
 });
