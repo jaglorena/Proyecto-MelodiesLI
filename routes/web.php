@@ -32,6 +32,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cancion/reproducir', [CancionController::class, 'aumentarReproduccion']);
     Route::get('/artista/{id}/regalias', [RegaliasController::class, 'regaliasXArtista']);
     Route::get('/artista', [ArtistaController::class, 'showArtista']);
+     // Rutas para Buscador
+     Route::get('/buscador', [UsuarioController::class, 'buscador'])->name('buscador');
+     Route::get('/buscar/resultados', [UsuarioController::class, 'realizarBusqueda'])->name('buscar.resultados');
+ 
 });
 
 // Rutas de administración
@@ -50,4 +54,6 @@ Route::middleware(['auth', PermisosAdmin::class])->group(function () {
     Route::post('/genero', [GeneroController::class, 'store'])->name('guardarGenero');
     Route::get('/artista/{id}', [ArtistaController::class, 'show']);
     Route::get('/regalias', [RegaliasController::class, 'index']);
+
+   
 });
