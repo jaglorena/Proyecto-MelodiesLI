@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Artista;
+use App\Models\Genero;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -15,7 +15,8 @@ class ArtistaController extends Controller
 
     public function index()
     {
-        return view('crearartista');
+        $generos = Genero::all();
+        return view('crearartista', ['generos' => $generos]);
     }
 
     public function create()
@@ -26,7 +27,7 @@ class ArtistaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            "nombre" => "required",
+            "nombre"    => "required",
             "biografia" => "required",
             "genero_id" => "required",
         ]);
@@ -48,11 +49,15 @@ class ArtistaController extends Controller
 
     public function destroy($id)
     {
+        $artista = Artista::findOrFail($id);
+        $artista->delete();
 
+        return redirect()->route('admin.artista.index')->with('message', 'Artista eliminado correctamente.');
     }
 
     public function show($id)
     {
-        return view('crearartista', ['artista' => Artista::find($id)]);
+        $generos = Genero::all();
+        return view('crearartista', ['artista' => Artista::find($id), 'generos' => $generos]);
     }
 }

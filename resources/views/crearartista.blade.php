@@ -29,7 +29,14 @@
 
                     <div class="mb-3">
                         <label for="genero" class="form-label">Género:</label>
-                        <input type="text" class="form-control" id="genero" name="genero" aria-describedby="generoHelp" value="{{ $artista->genero_id }}" readonly>
+                        <select class="form-control" id="genero_id" name="genero_id" aria-describedby="genero" disabled>
+                            <option value="">Selecciona un género</option>
+                            @foreach($generos as $genero)
+                                <option value="{{ $genero->id }}" {{ (isset($artista) && $artista->genero_id == $genero->id) ? 'selected' : '' }}>
+                                    {{ $genero->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
                         <div id="generoHelp" class="form-text">Género del artista</div>
                     </div>
                 </form>
@@ -50,7 +57,12 @@
 
                     <div class="mb-3">
                         <label for="genero" class="form-label">Género:</label>
-                        <input type="text" class="form-control" id="genero" name="genero_id" aria-describedby="generoHelp">
+                        <select class="form-control" id="genero_id" name="genero_id" aria-describedby="genero">
+                            <option value="">Selecciona un género</option>
+                            @foreach($generos as $genero)
+                                <option value="{{ $genero->id }}">{{ $genero->nombre }}</option>
+                            @endforeach
+                        </select>
                         <div id="generoHelp" class="form-text">Género del artista</div>
                     </div>
 
@@ -67,6 +79,13 @@
     @if (isset($artista))
         <div class="row mt-3">
             <div class="col">
+                <form method="POST" action="{{ route('artista.destroy', $artista->id) }}" onsubmit="return confirmDelete()">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+            <div class="col">
                 <button class="btn btn-primary" onclick="window.location.href='{{ url('/artista/' . $artista->id . '/regalias') }}'">Ver regalías</button>
             </div>
         </div>
@@ -75,5 +94,9 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function confirmDelete() {
+        return confirm('¿Estás seguro de que deseas eliminar este artista? Esta acción no se puede deshacer.');
+    }
+</script>
 @endsection

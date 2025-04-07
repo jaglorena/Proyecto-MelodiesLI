@@ -1,15 +1,16 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Artista;
 use Illuminate\Http\Request;
 
 class AlbumController
 {
     public function index()
     {
-        return view('album');
+        $artistas = Artista::all();
+        return view('album', ['artistas' => $artistas]);
     }
 
     public function create()
@@ -20,9 +21,9 @@ class AlbumController
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            "titulo" => "required",
+            "titulo"            => "required",
             "fecha_lanzamiento" => "required",
-            "artista_id" => "required",
+            "artista_id"        => "required",
         ]);
 
         $resultado = Album::create($validatedData);
@@ -41,11 +42,16 @@ class AlbumController
 
     public function destroy($id)
     {
+        $album = Album::findOrFail($id);
+        $album->delete();
 
+        return redirect()->route('admin.album.index')->with('message', 'Album eliminado correctamente.');
     }
 
     public function show($id)
     {
-        return view('album', ['album' => Album::find($id)]);
+        $artistas = Artista::all();
+
+        return view('album', ['album' => Album::find($id), 'artistas' => $artistas]);
     }
 }

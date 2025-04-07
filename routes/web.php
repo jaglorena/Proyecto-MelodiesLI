@@ -33,35 +33,32 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cancion/reproducir', [CancionController::class, 'aumentarReproduccion']);
     Route::get('/artista/{id}/regalias', [RegaliasController::class, 'regaliasXArtista']);
     Route::get('/artista', [ArtistaController::class, 'showArtista']);
-     // Rutas para Buscador
-     Route::get('/buscador', [UsuarioController::class, 'buscador'])->name('buscador');
-     Route::get('/buscar/resultados', [UsuarioController::class, 'realizarBusqueda'])->name('buscar.resultados');
- 
+    // Rutas para Buscador
+    Route::get('/buscador', [UsuarioController::class, 'buscador'])->name('buscador');
+    Route::get('/buscar/resultados', [UsuarioController::class, 'realizarBusqueda'])->name('buscar.resultados');
+    // Rutas de exploración
+    Route::get('/explorar', [ExplorarController::class, 'index'])->name('explorar');
+    Route::get('/explorar/genero/{id}', [ExplorarController::class, 'cancionesPorGenero']);
+    Route::get('/explorar/artista/{id}', [ExplorarController::class, 'cancionesPorArtista']);
 });
 
 // Rutas de administración
 Route::middleware(['auth', PermisosAdmin::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'showAdmin']);
     Route::post('/adminartista', [ArtistaController::class, 'store'])->name('guardarArtista');
-    Route::get('/adminartista', [ArtistaController::class, 'index']);
-    Route::get('/album', [AlbumController::class, 'index']);
+    Route::get('/adminartista', [ArtistaController::class, 'index'])->name('admin.artista.index');
+    Route::get('/album', [AlbumController::class, 'index'])->name('admin.album.index');
     Route::get('/album/{id}', [AlbumController::class, 'show']);
     Route::post('/album', [AlbumController::class, 'store'])->name('guardarAlbum');
     Route::get('/cancion/{id}', [CancionController::class, 'show']);
-    Route::get('/cancion', [CancionController::class, 'index']);
+    Route::get('/cancion', [CancionController::class, 'index'])->name('admin.cancion.index');
     Route::post('/cancion', [CancionController::class, 'store'])->name('guardarCancion');
     Route::get('/genero', [GeneroController::class, 'index']);
     Route::get('/genero/{id}', [GeneroController::class, 'show']);
     Route::post('/genero', [GeneroController::class, 'store'])->name('guardarGenero');
     Route::get('/artista/{id}', [ArtistaController::class, 'show']);
     Route::get('/regalias', [RegaliasController::class, 'index']);
-
-   
-});
-
-// Rutas de exploración
-Route::middleware(['auth'])->group(function () {
-    Route::get('/explorar', [ExplorarController::class, 'index'])->name('explorar');
-    Route::get('/explorar/genero/{id}', [ExplorarController::class, 'cancionesPorGenero']);
-    Route::get('/explorar/artista/{id}', [ExplorarController::class, 'cancionesPorArtista']);
+    Route::delete('/artista/{id}', [ArtistaController::class, 'destroy'])->name('artista.destroy');
+    Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
+    Route::delete('/cancion/{id}', [CancionController::class, 'destroy'])->name('cancion.destroy');
 });
