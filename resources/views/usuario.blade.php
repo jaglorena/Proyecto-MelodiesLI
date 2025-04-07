@@ -2,6 +2,7 @@
 
 @section('title', 'Melodies Li')
 
+
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container music-section mt-4">
