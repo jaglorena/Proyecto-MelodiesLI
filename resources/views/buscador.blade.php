@@ -5,7 +5,7 @@
 @section('styles')
 <style>
     body {
-        background-color: #121212 !important;
+        background-color: var(--primary-color) !important;
         color: #ffffff;
     }
 
