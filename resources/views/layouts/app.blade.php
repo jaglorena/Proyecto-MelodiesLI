@@ -28,7 +28,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('buscador') }}">Buscador</a>
                             </li>
-
+                            <li class="nav-item"><a class="nav-link" href="{{ route('perfil') }}">Editar mi perfil</a></li>
                             <li class="nav-item">
                                 <span class="nav-link">Hola, {{ Auth::user()->nombre }}</span>
                             </li>
@@ -78,6 +78,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarAdmin">
                         <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="/eliminarusuario">Usuarios</a> </li>
                             <li class="nav-item"><a class="nav-link" href="/admin">Panel de Control</a></li>
                             <li class="nav-item"><a class="nav-link" href="/genero">G&eacute;nero</a></li>
                             <li class="nav-item"><a class="nav-link" href="/adminartista">Artista</a></li>
