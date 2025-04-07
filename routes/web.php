@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', PermisosAdmin::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'showAdmin']);
     Route::post('/adminartista', [ArtistaController::class, 'store'])->name('guardarArtista');
-    Route::get('/adminartista', [ArtistaController::class, 'index']);
+    Route::get('/adminartista', [ArtistaController::class, 'index'])->name('admin.artista.index');
     Route::get('/album', [AlbumController::class, 'index']);
     Route::get('/album/{id}', [AlbumController::class, 'show']);
     Route::post('/album', [AlbumController::class, 'store'])->name('guardarAlbum');
@@ -50,4 +50,5 @@ Route::middleware(['auth', PermisosAdmin::class])->group(function () {
     Route::post('/genero', [GeneroController::class, 'store'])->name('guardarGenero');
     Route::get('/artista/{id}', [ArtistaController::class, 'show']);
     Route::get('/regalias', [RegaliasController::class, 'index']);
+    Route::delete('/artista/{id}', [ArtistaController::class, 'destroy'])->name('artista.destroy');
 });
