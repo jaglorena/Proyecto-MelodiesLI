@@ -27,7 +27,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="artista" class="form-label">Artista:</label>
-                        <input type="text" class="form-control" id="artista" name="artista" aria-describedby="artistaHelp" value="{{ $album->artista_id }}" readonly>
+                        <select class="form-control" id="artista" name="artista_id" aria-describedby="artistaHelp" disabled>
+                            <option value="">Selecciona un artista</option>
+                            @foreach($artistas as $artista)
+                                <option value="{{ $artista->id }}" {{ $artista->id == $album->artista_id ? 'selected' : '' }}>{{ $artista->nombre }}</option>
+                            @endforeach
+                        </select>
                         <div id="artistaHelp" class="form-text">Artista que interpreta las canciones</div>
                     </div>
                 </form>
@@ -46,7 +51,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="artista" class="form-label">Artista:</label>
-                        <input type="text" class="form-control" id="artista" name="artista_id" aria-describedby="artistaHelp">
+                        <select class="form-control" id="artista" name="artista_id" aria-describedby="artistaHelp">
+                            <option value="">Selecciona un artista</option>
+                            @foreach($artistas as $artista)
+                                <option value="{{ $artista->id }}">{{ $artista->nombre }}</option>
+                            @endforeach
+                        </select>
                         <div id="artistaHelp" class="form-text">Artista que interpreta las canciones</div>
                     </div>
                     <div class="row">
@@ -58,5 +68,22 @@
             @endif
         </div>
     </div>
-</div>
+    @if(isset($album))
+        <div class="row">
+            <div class="col">
+                <form method="POST" action="{{ route('album.destroy', $album->id) }}" onsubmit="return confirmDelete();">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    @endif
+@section('scripts')
+<script>
+    function confirmDelete() {
+        return confirm('¿Estás seguro de que deseas eliminar este album? Esta acción no se puede deshacer.');
+    }
+</script>
+@endsection
 @endsection
