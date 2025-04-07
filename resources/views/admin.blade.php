@@ -2,6 +2,10 @@
 
 @section('title', 'Admin Melodies Li')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+@endsection
+
 @section('content')
 <div class="contenedor-admin">
     <h1 class="titulo-admin">Opciones de Administrador</h1>

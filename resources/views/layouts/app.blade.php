@@ -15,17 +15,18 @@
             {{-- Simula estar logueado como cliente --}}
             <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
+                    <a class="navbar-brand" href="/usuario"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCliente">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCliente">
                         <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="/usuario">Inicio</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('explorar') }}">Explorar Canciones</a></li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('buscador') }}">Buscador</a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <span class="nav-link">Hola, {{ Auth::user()->nombre }}</span>
                             </li>
@@ -43,12 +44,14 @@
             {{-- Simula estar logueado como artista --}}
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
+                    <a class="navbar-brand" href="/artista"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarArtista">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarArtista">
                         <ul class="navbar-nav ms-auto">
+
+                            <li class="nav-item"><a class="nav-link text-white" href="/artista">Inicio</a></li>
                             <li class="nav-item"><a class="nav-link text-white" href="{{ url('artista/' . Auth::user()->id . '/regalias') }}">Mis regal&iacute;as</a></li>
                             <li class="nav-item">
                                 <span class="nav-link">Hola, {{ Auth::user()->nombre }}</span>
@@ -67,7 +70,7 @@
             {{-- Simula estar logueado como admin --}}
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
+                    <a class="navbar-brand" href="/admin"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin">
                         <span class="navbar-toggler-icon"></span>
                     </button>
