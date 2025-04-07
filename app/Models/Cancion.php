@@ -19,4 +19,12 @@ class Cancion extends Model
         "artista_id",
     ];
 
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    } 
+    public function artista()
+    {
+        return $this->belongsTo(Artista::class);
+    }
 }

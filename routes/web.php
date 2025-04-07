@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\CancionController;
+use App\Http\Controllers\ExplorarController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegaliasController;
@@ -32,6 +33,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cancion/reproducir', [CancionController::class, 'aumentarReproduccion']);
     Route::get('/artista/{id}/regalias', [RegaliasController::class, 'regaliasXArtista']);
     Route::get('/artista', [ArtistaController::class, 'showArtista']);
+     // Rutas para Buscador
+     Route::get('/buscador', [UsuarioController::class, 'buscador'])->name('buscador');
+     Route::get('/buscar/resultados', [UsuarioController::class, 'realizarBusqueda'])->name('buscar.resultados');
+ 
 });
 
 // Rutas de administración
@@ -53,4 +58,13 @@ Route::middleware(['auth', PermisosAdmin::class])->group(function () {
     Route::delete('/artista/{id}', [ArtistaController::class, 'destroy'])->name('artista.destroy');
     Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
     Route::delete('/cancion/{id}', [CancionController::class, 'destroy'])->name('cancion.destroy');
+
+   
+});
+
+// Rutas de exploración
+Route::middleware(['auth'])->group(function () {
+    Route::get('/explorar', [ExplorarController::class, 'index'])->name('explorar');
+    Route::get('/explorar/genero/{id}', [ExplorarController::class, 'cancionesPorGenero']);
+    Route::get('/explorar/artista/{id}', [ExplorarController::class, 'cancionesPorArtista']);
 });
