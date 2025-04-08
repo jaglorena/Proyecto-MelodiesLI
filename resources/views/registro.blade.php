@@ -3,7 +3,7 @@
 @section('title', 'Registro de Usuario')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 form-wrapper">
     <h2 class="text-center mb-4">Registro de Usuario</h2>
 
     <form method="POST" action="{{ route('registrarUsuario') }}">
@@ -38,8 +38,4 @@
         </div>
     </form>
 </div>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

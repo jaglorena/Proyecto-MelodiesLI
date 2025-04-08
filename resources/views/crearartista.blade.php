@@ -3,7 +3,7 @@
 @section('title', 'Artista')
 
 @section('content')
-<div class="container">
+<div class="container form-wrapper">
     <div class="row">
         <div class="col">
             <h1>Artista</h1>

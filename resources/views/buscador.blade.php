@@ -2,56 +2,6 @@
 
 @section('title', 'Buscador')
 
-@section('styles')
-<style>
-    body {
-        background-color: var(--primary-color) !important;
-        color: #ffffff;
-    }
-
-    .form-control {
-        background-color: #2a2a2a;
-        border: 1px solid #444;
-        color: #fff;
-    }
-
-    .form-control::placeholder {
-        color: #aaa;
-    }
-
-    .form-control:focus {
-        background-color: #2a2a2a;
-        color: #fff;
-        border-color: #666;
-        box-shadow: none;
-    }
-
-    .card {
-        background-color: #1f1f1f;
-        border: none;
-    }
-
-    .card-title,
-    .card-text,
-    h3, h4, h5, h6,
-    p, small {
-        color: #fff !important;
-    }
-
-    .btn-success {
-        background-color: #1db954;
-        border: none;
-    }
-
-    .btn-success:hover {
-        background-color: #1ed760;
-    }
-
-    .rounded-circle {
-        border: 2px solid #444;
-    }
-</style>
-@endsection
 
 @section('content')
 <div class="container mt-5">

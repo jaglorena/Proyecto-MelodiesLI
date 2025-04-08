@@ -3,6 +3,21 @@
 @section('title', 'Melodies Li')
 
 @section('content')
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title', 'Melodies Li')</title>
+
+    <!-- ✅ Asegúrate de tener esto -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ✅ Agrega aquí Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-K6B1..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tu hoja de estilos -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
 {{-- Incluir FontAwesome para los íconos de reproducción --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -64,6 +79,14 @@
             <h5 class="color-word">Lista de artistas</h5>
             <div class="song-list artist-list">
                 @if (isset($artistas))
+                @foreach($artistas as $artista)
+                    <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
+                        <span class="fw-semibold">{{ $artista['nombre'] }}</span>
+                        <button class="btn btn-outline-light btn-sm rounded-circle">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+                @endforeach
                     @foreach($artistas as $artista)
                         <div class="song-list-item">
                             <span>{{ $artista['nombre'] }}</span>
@@ -87,6 +110,11 @@
             <div class="song-list song-list-scroll">
                 @if (isset($canciones))
                     @foreach($canciones as $cancion)
+                     <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
+                            <span class="fw-semibold">{{ $cancion->titulo }}</span>
+                            <button class="btn btn-outline-light btn-sm rounded-circle">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
                         @php
                             $archivo = Str::slug($cancion->titulo, '_') . '.mp3';
                         @endphp
@@ -112,7 +140,6 @@
     </div>
 </div>
 @endsection
-
 @section('scripts')
 <script>
     document.addEventListener("DOMContentLoaded", () => {

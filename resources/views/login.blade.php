@@ -7,7 +7,7 @@
 @section('content')
 
 <body>
-    <div class="container">
+    <div class="container form-wrapper">
         <h2>Iniciar Sesión</h2>
 
         @if (session('error'))
@@ -24,7 +24,7 @@
 
         <form method="POST" action="{{ route('login.submit') }}">
             @csrf
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" class="form-control" required autofocus>
                 @error('email')
@@ -32,7 +32,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" class="form-control" required>
                 @error('password')
@@ -42,7 +42,7 @@
 
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
 
-            <p>¿No tienes una cuenta? <a href="/registro">Regístrate aquí</a></p>
+            <p class="mt-4">¿No tienes una cuenta? <a href="/registro">Regístrate aquí</a></p>
 
         </form>
     </div>

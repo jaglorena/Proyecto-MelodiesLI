@@ -15,7 +15,7 @@
         @if(Auth::user()->tipo_usuario === 'cliente')
             {{-- Navbar para CLIENTE --}}
             {{-- Simula estar logueado como cliente --}}
-            <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+            <nav class="navbar navbar-expand-lg navbar-cliente mb-3">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/usuario"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCliente">
@@ -44,7 +44,7 @@
         @elseif(Auth::user()->tipo_usuario === 'artista')
             {{-- Navbar para ARTISTA --}}
             {{-- Simula estar logueado como artista --}}
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
+            <nav class="navbar navbar-expand-lg navbar-artista mb-3">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/artista"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarArtista">
@@ -70,7 +70,7 @@
         @elseif(Auth::user()->tipo_usuario === 'administrador')
             {{-- Navbar para ADMINISTRADOR --}}
             {{-- Simula estar logueado como admin --}}
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+            <nav class="navbar navbar-expand-lg  navbar-admin mb-3">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/admin"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin">
@@ -99,7 +99,7 @@
 
         @endif
     @else
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <nav class="navbar navbar-expand-lg navbar-admin mb-3">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#"><img src="https://i.ibb.co/JvTD1Xx/Logo-Melodies-Li-1.png" alt="Logo" style="width: 30px; border-radius: 50%;"> Melodies Li</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin">

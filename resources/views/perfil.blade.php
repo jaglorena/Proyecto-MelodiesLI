@@ -3,7 +3,7 @@
 @section('title', 'Editar Perfil')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 form-wrapper">
     <h2 class="mb-4">Editar Perfil</h2>
 
     @if(session('success'))
