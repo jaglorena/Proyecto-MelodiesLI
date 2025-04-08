@@ -25,7 +25,7 @@
                     @if (isset($reproducciones) && count($reproducciones) > 0)
                         @foreach($reproducciones as $registro)
                             @php
-                                $total = $registro->cantidad_reproducciones * $monto->monto;
+                                $total = $registro->cantidad_reproducciones * $monto;
                                 $totalSum += $total;
                             @endphp
                             <tr>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Explorar Canciones')
+
 @section('content')
 <div class="container mt-4">
     <h2 class="mb-4">Explorar Canciones</h2>
@@ -40,6 +42,13 @@
 
 @section('scripts')
 <script>
+    const audioHTML = `
+        <audio controls autoplay class="w-100 mt-2">
+            <source src="" type="audio/mpeg">
+            Tu navegador no soporta audio HTML5.
+        </audio>
+    `;
+
     function verPorGenero(id) {
         fetch(`/explorar/genero/${id}`)
             .then(res => res.json())
@@ -62,19 +71,73 @@
                 html = '<p>No se encontraron canciones para esta categoría.</p>';
             } else {
                 canciones.forEach(c => {
+                    const archivo = c.archivo ?? (c.titulo ? slugify(c.titulo) + '.mp3' : '');
+                    const src = `/song/${archivo}`;
+
                     html += `
-                        <div class="mb-3">
-                            <strong>${c.titulo}</strong><br>
-                            Artista: ${c.artista?.nombre || 'Desconocido'}<br>
-                            Álbum: ${c.album?.titulo || 'Desconocido'}<br>
-                            <audio controls src="/storage/${c.ruta || ''}" class="mt-1"></audio>
-                        </div>
-                        <hr>`;
+                        <div class="cancion-item mb-3 border-bottom pb-3" data-id="${c.id}">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    🎵 <strong>${c.titulo}</strong><br>
+                                    Artista: ${c.artista?.nombre || 'Desconocido'}<br>
+                                    Álbum: ${c.album?.titulo || 'Desconocido'}
+                                </div>
+                                <button class="btn btn-sm btn-success play-button mt-2"
+                                    data-src="${src}" data-id="${c.id}">
+                                    ▶
+                                </button>
+                            </div>
+                            <div class="player-slot mt-2"></div>
+                        </div>`;
                 });
             }
+
             contenedor.innerHTML = html;
-        }, 300); 
+            activarReproductores();
+        }, 300);
     }
 
+    function activarReproductores() {
+        document.querySelectorAll('.play-button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const src = btn.dataset.src;
+                const id = btn.dataset.id;
+
+                // Limpiar anteriores
+                document.querySelectorAll('.player-slot').forEach(slot => {
+                    slot.innerHTML = '';
+                });
+
+                const slot = document.querySelector(`.cancion-item[data-id="${id}"] .player-slot`);
+                slot.innerHTML = audioHTML;
+
+                const audio = slot.querySelector('audio');
+                audio.querySelector('source').src = src;
+                audio.load();
+                audio.play();
+
+                // Registrar reproducción
+                fetch('/cancion/reproducir', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ id: id })
+                })
+                .then(r => r.json())
+                .then(d => console.log('Reproducción registrada:', d));
+            });
+        });
+    }
+
+    function slugify(text) {
+        return text.toString().toLowerCase()
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, '_')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '_')
+            .trim();
+    }
 </script>
 @endsection
