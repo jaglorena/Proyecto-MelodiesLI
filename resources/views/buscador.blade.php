@@ -198,6 +198,29 @@
             audio.querySelector('source').src = src;
             audio.load();
             audio.play();
+            fetch('/cancion/reproducir', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Token CSRF para proteger la solicitud
+                    },
+                    body: JSON.stringify({ id: id }) // Enviar el ID de la canción
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Error al aumentar la reproducción');
+                    }
+                })
+                .then(data => {
+                    console.log('Reproducción aumentada:', data);
+                    alert('Reproducción aumentada correctamente');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Hubo un error al aumentar la reproducción');
+                });
         });
     });
 </script>
