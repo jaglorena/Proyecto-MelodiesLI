@@ -9,14 +9,10 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Melodies Li')</title>
 
-    <!-- ✅ Asegúrate de tener esto -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- ✅ Agrega aquí Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-K6B1..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Tu hoja de estilos -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 {{-- Incluir FontAwesome para los íconos de reproducción --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -79,28 +75,14 @@
             <h5 class="color-word">Lista de artistas</h5>
             <div class="song-list artist-list">
                 @if (isset($artistas))
-                @foreach($artistas as $artista)
-                    <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
-                        <span class="fw-semibold">{{ $artista['nombre'] }}</span>
-                        <button class="btn btn-outline-light btn-sm rounded-circle">
-                            <i class="fa-solid fa-play"></i>
-                        </button>
-                    </div>
-                @endforeach
                     @foreach($artistas as $artista)
-                        <div class="song-list-item">
-                            <span>{{ $artista['nombre'] }}</span>
-                            <div>
-                                <button class="play-button-icon btn btn-sm btn-success">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                            </div>
+                        <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
+                            <span class="fw-semibold"><i class="fas fa-user me-2"></i>{{ $artista['nombre'] }}</span>
+                            <span class="badge bg-secondary">Artista</span>
                         </div>
                     @endforeach
                 @else
-                    <div class="song-list-item">
-                        <span>Sin artistas</span>
-                    </div>
+                    <div class="text-light">Sin artistas disponibles</div>
                 @endif
             </div>
         </div>
@@ -110,30 +92,21 @@
             <div class="song-list song-list-scroll">
                 @if (isset($canciones))
                     @foreach($canciones as $cancion)
-                     <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
-                            <span class="fw-semibold">{{ $cancion->titulo }}</span>
-                            <button class="btn btn-outline-light btn-sm rounded-circle">
-                                <i class="fa-solid fa-play"></i>
-                            </button>
                         @php
                             $archivo = Str::slug($cancion->titulo, '_') . '.mp3';
                         @endphp
-                        <div class="song-list-item">
-                            <span><i class="fas fa-music me-1"></i> {{ $cancion->titulo }}</span>
-                            <div>
-                                <button class="play-button-icon btn btn-sm btn-success"
-                                    data-src="{{ asset('song/' . $archivo) }}"
-                                    data-id="{{ $cancion->id }}"
-                                    data-titulo="{{ $cancion->titulo }}">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                            </div>
+                        <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
+                            <span class="fw-semibold"><i class="fas fa-music me-2"></i>{{ $cancion->titulo }}</span>
+                            <button class="btn btn-outline-light btn-sm rounded-circle play-button-icon"
+                                data-src="{{ asset('song/' . $archivo) }}"
+                                data-id="{{ $cancion->id }}"
+                                data-titulo="{{ $cancion->titulo }}">
+                                <i class="fas fa-play"></i>
+                            </button>
                         </div>
                     @endforeach
                 @else
-                    <div class="song-list-item">
-                        <span>Sin canciones</span>
-                    </div>
+                    <div class="text-light">Sin canciones disponibles</div>
                 @endif
             </div>
         </div>
@@ -141,12 +114,14 @@
 </div>
 @endsection
 @section('scripts')
+@section('scripts')
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const audio = document.getElementById('audio-player');
         const source = audio.querySelector('source');
         const playerContainer = document.getElementById('player-container');
         const songInfo = document.getElementById('song-info');
+        let currentBtn = null;
 
         document.querySelectorAll('.play-button-icon').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -159,15 +134,28 @@
                     return;
                 }
 
-                // Mostrar el reproductor
-                playerContainer.style.display = 'block';
-                songInfo.textContent = `🎵 Reproduciendo: ${titulo || 'Desconocida'}`;
+                // Pausar si ya está reproduciendo la misma canción
+                if (currentBtn === btn && !audio.paused) {
+                    audio.pause();
+                    btn.innerHTML = '<i class="fas fa-play"></i>';
+                    return;
+                }
 
+                // Resetear botón anterior
+                if (currentBtn && currentBtn !== btn) {
+                    currentBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+
+                // Reproducir
+                playerContainer.style.display = 'block';
+                songInfo.textContent = `Reproduciendo: ${titulo}`;
                 source.src = src;
                 audio.load();
                 audio.play();
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
+                currentBtn = btn;
 
-                // Registrar reproducción si hay ID
+                // Registrar reproducción
                 if (id) {
                     fetch('/cancion/reproducir', {
                         method: 'POST',
@@ -176,13 +164,17 @@
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                         },
                         body: JSON.stringify({ id: id })
-                    }).then(response => {
-                        if (!response.ok) {
-                            console.error("Error al aumentar reproducción.");
-                        }
-                    });
+                    }).catch(err => console.error("Error al registrar reproducción", err));
                 }
             });
+        });
+
+        // Reset ícono cuando termina
+        audio.addEventListener('ended', () => {
+            if (currentBtn) {
+                currentBtn.innerHTML = '<i class="fas fa-play"></i>';
+                currentBtn = null;
+            }
         });
     });
 </script>
