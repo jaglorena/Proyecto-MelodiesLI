@@ -105,6 +105,7 @@
                             <button class="btn btn-outline-light btn-sm rounded-circle">
                                 <i class="fa-solid fa-play"></i>
                             </button>
+
                         </div>
                     @endforeach
                 @else
