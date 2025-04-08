@@ -83,13 +83,16 @@
                 <div class="col-md-8">
                     <h5 class="fw-bold">Canciones</h5>
                     @forelse($canciones as $cancion)
+                        @php
+                            $archivo = Str::slug($cancion->titulo, '_') . '.mp3';
+                        @endphp
                         <div class="cancion-item mb-3 border-bottom pb-3" data-id="{{ $cancion->id }}">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
                                     🎵 <strong>{{ $cancion->titulo }}</strong>
                                 </div>
                                 <button class="btn btn-sm btn-success play-button"
-                                    data-src="{{ asset('songs/' . $cancion->archivo) }}"
+                                    data-src="{{ asset('song/' . $archivo) }}"
                                     data-id="{{ $cancion->id }}">
                                     ▶
                                 </button>
@@ -106,13 +109,17 @@
             <div class="mb-5">
                 <h5 class="fw-bold">Canciones</h5>
                 @forelse($canciones as $cancion)
+                    @php
+                        $archivo = Str::slug($cancion->titulo, '_') . '.mp3';
+                    @endphp
                     <div class="cancion-item mb-3 border-bottom pb-3" data-id="{{ $cancion->id }}">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 🎵 <strong>{{ $cancion->titulo }}</strong>
                             </div>
                             <button class="btn btn-sm btn-success play-button"
-                                data-src="{{ asset('songs/' . $cancion->archivo) }}"
+                            data-src="{{ asset('song/' . Str::slug($cancion->titulo, '_') . '.mp3') }}"
+
                                 data-id="{{ $cancion->id }}">
                                 ▶
                             </button>
@@ -182,11 +189,15 @@
                 slot.innerHTML = '';
             });
 
-            // Mostrar reproductor debajo de la canción correspondiente
+            // Inyectar reproductor
             const slot = document.querySelector(`.cancion-item[data-id="${id}"] .player-slot`);
             slot.innerHTML = audioHTML;
-            slot.querySelector('audio source').src = src;
-            slot.querySelector('audio').load();
+
+            // Cargar la canción
+            const audio = slot.querySelector('audio');
+            audio.querySelector('source').src = src;
+            audio.load();
+            audio.play();
         });
     });
 </script>

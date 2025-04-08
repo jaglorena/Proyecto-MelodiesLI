@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
+
 use App\Models\Album;
 use App\Models\Artista;
 use App\Models\Cancion;
@@ -28,17 +30,29 @@ class CancionController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            "titulo"     => "required",
-            "duracion"   => "required",
-            "album_id"   => "required",
-            "artista_id" => "required",
-        ]);
+{
+    $validatedData = $request->validate([
+        'titulo'     => 'required',
+        'duracion'   => 'required',
+        'album_id'   => 'required',
+        'artista_id' => 'required',
+        'archivo'    => 'required|mimes:mp3|max:10240', // máximo 10MB
+    ]);
 
-        $resultado = Cancion::create($validatedData);
-        return redirect('/cancion/' . $resultado->id);
+    // Guardar archivo en /public/song
+    if ($request->hasFile('archivo')) {
+        $file = $request->file('archivo');
+        $nombre = Str::slug($request->titulo, '_') . '.mp3';
+        $file->move(public_path('song'), $nombre);
+        $validatedData['archivo'] = $nombre;
     }
+    
+    // Crear la canción
+    $cancion = Cancion::create($validatedData);
+
+    return redirect()->route('admin.cancion.index')->with('message', 'Canción guardada y archivo subido');
+}
+
 
     public function show($id)
     {
@@ -88,5 +102,6 @@ class CancionController extends Controller
             return response()->json(["mensaje" => "Reproduccion actualizada"], 200);
         }
     }
+    
 
 }
