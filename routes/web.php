@@ -40,6 +40,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/explorar', [ExplorarController::class, 'index'])->name('explorar');
     Route::get('/explorar/genero/{id}', [ExplorarController::class, 'cancionesPorGenero']);
     Route::get('/explorar/artista/{id}', [ExplorarController::class, 'cancionesPorArtista']);
+    //Rutas perfil
+    Route::get('/perfil', [UsuarioController::class, 'editarPerfil'])->name('perfil');
+    Route::put('/perfil', [UsuarioController::class, 'actualizarPerfil'])->name('perfil.actualizar');
+    //Ruta eliminar usuario desde admin
+    Route::get('/eliminarusuario', [UsuarioController::class, 'listarUsuarios']);
+    Route::delete('/eliminarusuario/{id}', [UsuarioController::class, 'eliminar'])->name('usuarios.eliminar');
 });
 
 // Rutas de administración
