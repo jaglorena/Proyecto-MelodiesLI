@@ -13,93 +13,97 @@
     <div class="row">
         <div class="col">
             @if (isset($cancion))
-                <form method="POST" action="{{ route('guardarCancion') }}">
+                <form method="POST" action="{{ route('guardarCancion') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="titulo" class="form-label">T&iacute;tulo:</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" aria-describedby="tituloHelp" value="{{ $cancion->titulo }}" readonly>
-                        <div id="tituloHelp" class="form-text">T&iacute;tulo de la canci&oacute;n</div>
+                        <input type="text" class="form-control" id="titulo" name="titulo" value="{{ $cancion->titulo }}" readonly>
                     </div>
 
                     <div class="mb-3">
                         <label for="duracion" class="form-label">Duraci&oacute;n:</label>
-                        <input type="text" class="form-control" id="duracion" name="duracion" aria-describedby="duracionHelp" value="{{ $cancion->duracion }}" readonly>
-                        <div id="duracionHelp" class="form-text">Duraci&oacute;n en formato mm:ss</div>
+                        <input type="text" class="form-control" id="duracion" name="duracion" value="{{ $cancion->duracion }}" readonly>
                     </div>
 
                     <div class="mb-3">
-                        <label for="album" class="form-label">Alb&uacute;m:</label>
-                        <select class="form-control" id="album" name="album_id" aria-describedby="genero" disabled>
-                            <option value="">Selecciona un género</option>
+                        <label for="album" class="form-label">Álbum:</label>
+                        <select class="form-control" name="album_id" disabled>
                             @foreach($albumes as $album)
-                                <option value="{{ $album->id }}" {{ (isset($cancion) && $cancion->album_id == $album->id) ? 'selected' : '' }}>
+                                <option value="{{ $album->id }}" {{ $cancion->album_id == $album->id ? 'selected' : '' }}>
                                     {{ $album->titulo }}
                                 </option>
                             @endforeach
                         </select>
-                        <div id="albumHelp" class="form-text">Alb&uacute;m al que pertenece</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="artista" class="form-label">Artista:</label>
-                        <select class="form-control" id="artista" name="artista_id" aria-describedby="genero" disabled>
-                            <option value="">Selecciona un artista</option>
+                        <select class="form-control" name="artista_id" disabled>
                             @foreach($artistas as $artista)
-                                <option value="{{ $artista->id }}" {{ (isset($cancion) && $cancion->artista_id == $artista->id) ? 'selected' : '' }}>
+                                <option value="{{ $artista->id }}" {{ $cancion->artista_id == $artista->id ? 'selected' : '' }}>
                                     {{ $artista->nombre }}
                                 </option>
                             @endforeach
                         </select>
-                        <div id="artistaHelp" class="form-text">Artista que interpreta</div>
                     </div>
-                </form>
 
+                    {{-- Reproductor si existe archivo --}}
+                    @php
+                        $archivo = $cancion->archivo ?? Str::slug($cancion->titulo, '_') . '.mp3';
+                    @endphp
+                    @if(file_exists(public_path('song/' . $archivo)))
+                        <audio controls class="w-100 mt-3">
+                            <source src="{{ asset('song/' . $archivo) }}" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    @else
+                        <p class="text-warning">No se encontró el archivo de audio asociado.</p>
+                    @endif
+
+                </form>
             @else
-                <form method="POST" action="{{ route('guardarCancion') }}">
+                <form method="POST" action="{{ route('guardarCancion') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="titulo" class="form-label">T&iacute;tulo:</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" aria-describedby="tituloHelp">
-                        <div id="tituloHelp" class="form-text">T&iacute;tulo de la canci&oacute;n</div>
+                        <input type="text" class="form-control" id="titulo" name="titulo">
                     </div>
 
                     <div class="mb-3">
                         <label for="duracion" class="form-label">Duraci&oacute;n:</label>
-                        <input type="text" class="form-control" id="duracion" name="duracion" aria-describedby="duracionHelp">
-                        <div id="duracionHelp" class="form-text">Duraci&oacute;n en formato mm:ss</div>
+                        <input type="text" class="form-control" id="duracion" name="duracion">
                     </div>
 
                     <div class="mb-3">
-                        <label for="album" class="form-label">Alb&uacute;m:</label>
-                        <select class="form-control" id="album" name="album_id" aria-describedby="albumHelp">
-                            <option value="">Selecciona un &aacute;lbum</option>
+                        <label for="album" class="form-label">Álbum:</label>
+                        <select class="form-control" name="album_id">
                             @foreach($albumes as $album)
                                 <option value="{{ $album->id }}">{{ $album->titulo }}</option>
                             @endforeach
                         </select>
-                        <div id="albumHelp" class="form-text">Alb&uacute;m al que pertenece</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="artista" class="form-label">Artista:</label>
-                        <select class="form-control" id="artista" name="artista_id" aria-describedby="artistaHelp">
-                            <option value="">Selecciona un artista</option>
+                        <select class="form-control" name="artista_id">
                             @foreach($artistas as $artista)
                                 <option value="{{ $artista->id }}">{{ $artista->nombre }}</option>
                             @endforeach
                         </select>
-                        <div id="artistaHelp" class="form-text">Artista que interpreta</div>
                     </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">Archivo MP3:</label>
+                        <input type="file" class="form-control" name="archivo" accept="audio/mp3,audio/mpeg">
+                        <small class="form-text text-muted">Sube el archivo de la canción (formato .mp3)</small>
                     </div>
+
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             @endif
         </div>
     </div>
+
     @if (isset($cancion))
         <div class="row mt-3">
             <div class="col">
@@ -115,9 +119,9 @@
 @endsection
 
 @section('scripts')
-    <script>
-        function confirmDelete() {
-            return confirm('¿Estás seguro de que deseas eliminar este artista? Esta acción no se puede deshacer.');
-        }
-    </script>
+<script>
+    function confirmDelete() {
+        return confirm('¿Estás seguro de que deseas eliminar esta canción? Esta acción no se puede deshacer.');
+    }
+</script>
 @endsection
