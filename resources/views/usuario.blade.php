@@ -2,8 +2,10 @@
 
 @section('title', 'Melodies Li')
 
-
 @section('content')
+{{-- Incluir FontAwesome para los íconos de reproducción --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container music-section mt-4">
     <div class="row">
@@ -48,18 +50,15 @@
     </div>
 
     <!-- Reproductor -->
-    <div class="player-controls mt-4">
-        <div>
-            <span>Song Five</span>
-            <span> - Rock Band</span>
-        </div>
-        <audio id="audio-player" controls>
-            <source src="song5.mp3" type="audio/mpeg">
+    <div class="player-controls mt-4" id="player-container" style="display: none;">
+        <div id="song-info" class="mb-2 fw-bold"></div>
+        <audio id="audio-player" controls class="w-100">
+            <source src="" type="audio/mpeg">
             Tu navegador no soporta audio HTML5.
         </audio>
     </div>
 
-    <!-- Listas de artistas y canciones -->
+    <!-- Lista de artistas y canciones -->
     <div class="row mt-4">
         <div class="col-md-6">
             <h5 class="color-word">Lista de artistas</h5>
@@ -69,7 +68,9 @@
                         <div class="song-list-item">
                             <span>{{ $artista['nombre'] }}</span>
                             <div>
-                                <button class="play-button-icon"><i class="fas fa-play"></i></button>
+                                <button class="play-button-icon btn btn-sm btn-success">
+                                    <i class="fas fa-play"></i>
+                                </button>
                             </div>
                         </div>
                     @endforeach
@@ -86,10 +87,16 @@
             <div class="song-list song-list-scroll">
                 @if (isset($canciones))
                     @foreach($canciones as $cancion)
+                        @php
+                            $archivo = Str::slug($cancion->titulo, '_') . '.mp3';
+                        @endphp
                         <div class="song-list-item">
-                            <span>{{ $cancion->titulo }}</span>
+                            <span><i class="fas fa-music me-1"></i> {{ $cancion->titulo }}</span>
                             <div>
-                                <button class="play-button-icon" id="boton-{{ $cancion->id }}" data-id="{{ $cancion->id }}">
+                                <button class="play-button-icon btn btn-sm btn-success"
+                                    data-src="{{ asset('song/' . $archivo) }}"
+                                    data-id="{{ $cancion->id }}"
+                                    data-titulo="{{ $cancion->titulo }}">
                                     <i class="fas fa-play"></i>
                                 </button>
                             </div>
@@ -107,5 +114,49 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/usuario.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const audio = document.getElementById('audio-player');
+        const source = audio.querySelector('source');
+        const playerContainer = document.getElementById('player-container');
+        const songInfo = document.getElementById('song-info');
+
+        document.querySelectorAll('.play-button-icon').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const src = btn.dataset.src;
+                const titulo = btn.dataset.titulo;
+                const id = btn.dataset.id;
+
+                if (!src) {
+                    alert("Esta canción no tiene un archivo asociado.");
+                    return;
+                }
+
+                // Mostrar el reproductor
+                playerContainer.style.display = 'block';
+                songInfo.textContent = `🎵 Reproduciendo: ${titulo || 'Desconocida'}`;
+
+                source.src = src;
+                audio.load();
+                audio.play();
+
+                // Registrar reproducción si hay ID
+                if (id) {
+                    fetch('/cancion/reproducir', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                        },
+                        body: JSON.stringify({ id: id })
+                    }).then(response => {
+                        if (!response.ok) {
+                            console.error("Error al aumentar reproducción.");
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection
