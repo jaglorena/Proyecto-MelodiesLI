@@ -3,4 +3,224 @@
     --secondary-color: #4a4d76;
     --background-color: #1c1c3c;
     --text-color: #ffffff;
+    --accent-blue: #4da6ff;
+    --accent-pink: #ff80bf;
+    --soft-gray: #46466e;
+    --table-header: #000000;
 }
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Títulos */
+h1, h2, h3, h4 {
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+/* Contenedor general */
+.container, .contenedor-admin {
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--secondary-color);
+}
+
+th {
+    background-color: var(--table-header);
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 12px;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #3e3e5a;
+}
+
+tr:nth-child(odd) {
+    background-color: var(--soft-gray);
+}
+
+/* Botones */
+button, .btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    transition: 0.2s all ease-in-out;
+}
+
+.btn-primary, .boton-admin {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+}
+
+.btn-danger {
+    background-color: var(--accent-pink);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover, .boton-admin:hover {
+    background-color: #3a8ed4;
+}
+
+.btn-danger:hover {
+    background-color: #d45b9f;
+}
+
+/* Inputs y Selects */
+input.form-control, select.form-control {
+    background-color: #2c2c4c;
+    color: var(--text-color);
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.95rem;
+}
+
+input:focus, select:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 5px var(--accent-blue);
+}
+
+/* Navbar personalizada por tipo de usuario */
+.navbar-cliente {
+    background-color: var(--primary-color);
+}
+
+.navbar-artista {
+    background-color: #342a54 !important;
+}
+
+.navbar-admin {
+    background-color: #000000 !important;
+}
+
+.navbar a,
+.navbar .nav-link,
+.navbar .navbar-brand,
+.navbar .btn-link {
+    color: var(--text-color) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn-link:hover {
+    color: var(--accent-blue) !important;
+}
+
+
+/* Cards */
+.card {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+}
+
+.card-title, .card-text {
+    color: var(--text-color);
+}
+.form-wrapper {
+    max-width: 550px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.genre-card {
+    margin-bottom: 1.5rem;
+}
+
+.genre-button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    text-align: center;
+    border-radius: 16px;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.genre-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    background-color: var(--accent-pink);
+}
+
+.genre-button img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    padding: 10px;
+}
+
+.genre-button h6 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+input::placeholder {
+    color: white !important;
+    opacity: 1;
+    font-weight: 400;
+}
+
+/* Enlaces personalizados para géneros y artistas */
+.link-genero, .link-artista {
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    width: 100%;
+    padding: 6px 0;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 8px;
+}
+
+/* Enlace género */
+.link-genero {
+    color: var(--text-color);
+}
+
+.link-genero:hover {
+    color: var(--text-color);
+    background-color: rgba(77, 166, 255, 0.1);
+}
+
+/* Enlace artista */
+.link-artista {
+    color: var(--text-color);
+}
+
+.link-artista:hover {
+    color: var(--text-color);
+    background-color: rgba(255, 128, 191, 0.1); 
+}
+
+/* List items oscuros */
+.list-group-item {
+    background-color: var(--primary-color);
+    border-color: var(--soft-gray);
+    color: var(--text-color);
+}
+

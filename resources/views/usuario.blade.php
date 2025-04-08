@@ -2,8 +2,22 @@
 
 @section('title', 'Melodies Li')
 
-
 @section('content')
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title', 'Melodies Li')</title>
+
+    <!-- ✅ Asegúrate de tener esto -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ✅ Agrega aquí Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-K6B1..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tu hoja de estilos -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container music-section mt-4">
     <div class="row">
@@ -65,14 +79,14 @@
             <h5 class="color-word">Lista de artistas</h5>
             <div class="song-list artist-list">
                 @if (isset($artistas))
-                    @foreach($artistas as $artista)
-                        <div class="song-list-item">
-                            <span>{{ $artista['nombre'] }}</span>
-                            <div>
-                                <button class="play-button-icon"><i class="fas fa-play"></i></button>
-                            </div>
-                        </div>
-                    @endforeach
+                @foreach($artistas as $artista)
+                    <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
+                        <span class="fw-semibold">{{ $artista['nombre'] }}</span>
+                        <button class="btn btn-outline-light btn-sm rounded-circle">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+                @endforeach
                 @else
                     <div class="song-list-item">
                         <span>Sin artistas</span>
@@ -86,13 +100,11 @@
             <div class="song-list song-list-scroll">
                 @if (isset($canciones))
                     @foreach($canciones as $cancion)
-                        <div class="song-list-item">
-                            <span>{{ $cancion->titulo }}</span>
-                            <div>
-                                <button class="play-button-icon" id="boton-{{ $cancion->id }}" data-id="{{ $cancion->id }}">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                            </div>
+                     <div class="d-flex justify-content-between align-items-center bg-dark text-light p-3 rounded mb-2 shadow-sm">
+                            <span class="fw-semibold">{{ $cancion->titulo }}</span>
+                            <button class="btn btn-outline-light btn-sm rounded-circle">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
                         </div>
                     @endforeach
                 @else
@@ -104,8 +116,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('js/usuario.js') }}"></script>
 @endsection

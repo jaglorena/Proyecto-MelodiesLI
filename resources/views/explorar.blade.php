@@ -2,24 +2,28 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2 class="mb-4">🎵 Explorar Canciones</h2>
+    <h2 class="mb-4">Explorar Canciones</h2>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 bg-dark text-light p-3 rounded">
             <h4>Géneros</h4>
             <ul class="list-group mb-4">
                 @foreach($generos as $genero)
-                    <li class="list-group-item">
-                        <a href="#" onclick="verPorGenero({{ $genero->id }})">{{ $genero->nombre }}</a>
-                    </li>
+                <li class="list-group-item">
+                    <a href="#" class="link-genero" onclick="event.preventDefault(); verPorGenero({{ $genero->id }})">
+                        {{ $genero->nombre }}
+                    </a>
+                </li>
                 @endforeach
             </ul>
 
             <h4>Artistas</h4>
             <ul class="list-group">
                 @foreach($artistas as $artista)
-                    <li class="list-group-item">
-                        <a href="#" onclick="verPorArtista({{ $artista->id }})">{{ $artista->nombre }}</a>
-                    </li>
+                <li class="list-group-item">
+                    <a href="#" class="link-artista" onclick="event.preventDefault(); verPorArtista({{ $artista->id }})">
+                        {{ $artista->nombre }}
+                    </a>
+                </li>
                 @endforeach
             </ul>
         </div>
@@ -27,7 +31,7 @@
         <div class="col-md-8">
             <h4>Resultados</h4>
             <div id="resultados">
-                <p class="text-muted">Selecciona un género o artista para ver canciones.</p>
+                <p style="color: #f0f0f0;">Selecciona un género o artista para ver canciones.</p>
             </div>
         </div>
     </div>
